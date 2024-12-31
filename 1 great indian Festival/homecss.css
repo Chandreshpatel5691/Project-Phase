@@ -1,0 +1,224 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* body{
+    background: #727070;
+} */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+
+header{
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    box-shadow: 0 4px 12px 0 rgba(36, 36, 36, 0.194);
+    display: flex;
+}
+
+#logo{
+    width: 160px;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 94%;                             /* Space from left and Right Side in Nav bar */
+    margin: 0 auto;                          /* Space from left and Right Side in Nav bar */
+   
+}
+
+.nav-left, .nav-right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar{
+    width: 350px;
+    line-height: 40px;
+    border-radius: 4px;
+    background: #f0eeee;
+    margin-left: 100px;
+}
+
+.search-bar input{                                  /*Search bar input box Style*/
+    background: transparent;
+    border: 0;
+    outline: none;
+    width: 80%;
+}
+
+.search-bar i{
+    font-size: 15px;
+    color: #727070;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.nav-right div{
+    margin: 0   10px 0 20px;                             /*Space between all icons in navbar */
+    text-align: center;
+}
+
+.nav-right div p{
+    font-size: 12px;
+    font-weight:500;
+}
+
+.nav-right div i{
+    color: #494848;
+}
+
+.nav-right div i:hover{
+    color: #de0707;
+}
+
+.festival-option{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    position: relative;
+    display: inline-block;
+    margin: 0 0 0 100px;
+}
+/* Dropdown Button */
+.dropbtn{
+    background-color: #80b596;
+    color: white;
+    padding: 6px;
+    font-size:11px;
+    border-radius: 3px;
+}
+
+.festival-list{                             /*Dropdown content (Hidden By Default) */
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.festival-list a{                           /* Links Inside the dropdown (Anchor tag) */
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: small;
+}
+
+.festival-list a:hover{                    /* Chande color of Dropdown links on Hover*/
+    transition: 0.3;
+    color: #d20c0c;
+} 
+
+.festival-option:hover .festival-list{              /* Show List of festival on hover */
+    display: block;
+}
+
+.festival-option:hover .dropbtn{
+    background-color: #d82020;
+}
+
+.bottom-nav{
+    background: black;
+}
+
+.bottom-nav p {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.bottom-nav p a{
+    color: rgb(239, 104, 20);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+
+
+/* Slider Container */
+.slider {
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden;
+    height: 400px;
+    width: 100%;
+}
+
+/* Slides */
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+    width: 100%;
+    display: none; /* Initially hide all images */
+}
+
+.slides img:first-child {
+    display: block; /* Display the first image */
+}
+
+/* Navigation Buttons */
+.slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    border-radius: 50%;
+}
+
+/* Previous Button */
+.slider .prev {
+    left: 10px;
+}
+
+/* Next Button */
+.slider .next {
+    right: 10px;
+}
+
+/* Button Hover Effect */
+.slider button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+/* Colors Catagory CSS */
+
+.center-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+}
+
+.center-name h1{
+
+    font-size: 70px;
+    font-weight: bold;
+    color: #1050f1; /* Orange color */
+    text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), 0 0 25px rgba(0, 0, 0, 0.2);
+    letter-spacing: 5px;
+    margin-top: 20px;  /* Adds some space from the top */
+}

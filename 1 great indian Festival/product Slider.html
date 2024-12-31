@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Slider with Mouse Drag</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Slider Container -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="card">
+                <img src="images/colors/1.jpg" alt="Product 1">
+                <h3>5 Pack Color</h3>
+                <p>Organic Holi Colours Herbal Gulal - Red, Pink, Green, Yellow, Blue</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/71dZgXt5MDL._SL1100_.jpg" alt="Product 2">
+                <h3>Organic Gulal</h3>
+                <p>(Pack of 3) Pink, Blue, Orange  100% Natural and Skin-Friendly Herbal Gulal</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/61Xn6YSjNwL._SL1359_.jpg" alt="Product 3">
+                <h3>Mini Bottle Holi Gulal Colors</h3>
+                <p>Herbal Mini Bottle Holi Gulal Colors for Festivals (1 Qty)</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/51XQXJ4ZX7L._SX300_SY300_QL70_FMwebp_.jpg" alt="Product 4">
+                <h3>Gulal Combo Pack of 5</h3>
+                <p>Red | Green | Saffron Yellow | Pink | Eco Friendly Holi Colours buy now</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/81gHzCaDvbL._SX522_.jpg" alt="Product 4">
+                <h3>Hand-Made Herbal Gulal</h3>
+                <p>Red, Yellow, Pink and Green Colour Set Pack of 4 (4 x 50gm)</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/51Rozkv-fSL._SY300_SX300_QL70_FMwebp_.jpg" alt="Product 4">
+                <h3>Bandhan Natural & Organic Holi Colors</h3>
+                <p>Holi Colors for Party, Soft & Skin Friendly, Non Toxic & 100% Safe</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/61IaYTulf1L._AC_UL320_.jpg" alt="Product 4">
+                <h3>Natural Holi Gulal Powder</h3>
+                <p>Natural Holi Gulal Powder |Pack of 3 (Yellow,Orange,Red)</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/61y-x8gSl2L._SX300_SY300_QL70_FMwebp_.jpg" alt="Product 4">
+                <h3>Piepot l Organic Holi Colours</h3>
+                <p>Orange, Red, Green, Purple, Yellow and Pink | Pack of 6</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/51REU6AXGcL._SX300_SY300_QL70_FMwebp_.jpg" alt="Product 4">
+                <h3>Antarkranti Naturals Orange Hand-Made</h3>
+                <p>Naturals Orange Hand-Made Herbal Gulal Pack of 3</p>
+                <button>Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/815jji6cssL._SL1500_.jpg" alt="Product 4">
+                <h3>Gulal Color - Pack of 4</h3>
+                <p>Natural and Hand Made, Soft & Glossy, Non Toxic, Organic & Herbal</p>
+                <button>Buy Now</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.slider-container').forEach(container => {
+            const slider = container.querySelector('.slider');
+            const prev = container.querySelector('.prev');
+            const next = container.querySelector('.next');
+        
+            // Slider button functionality
+            let currentIndex = 0;
+            const cardWidth = 270; // Width of each card including margin
+            const visibleCards = Math.floor(container.offsetWidth / cardWidth);
+            const totalCards = slider.children.length;
+            const maxIndex = totalCards - visibleCards;
+        
+            // Function for smooth scroll
+            function smoothScrollTo(target) {
+                const currentPosition = slider.scrollLeft;
+                const distance = target - currentPosition;
+                let startTime = null;
+        
+                // Animation function for smooth scroll
+                function scrollStep(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const scrollAmount = distance * (progress / 500); // Adjust duration here
+                    slider.scrollLeft = currentPosition + scrollAmount;
+                    
+                    if (progress < 500) { // Duration in ms
+                        window.requestAnimationFrame(scrollStep);
+                    } else {
+                        slider.scrollLeft = target;
+                    }
+                }
+        
+                window.requestAnimationFrame(scrollStep);
+            }
+        
+            prev.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex -= 1;
+                    const targetPosition = currentIndex * cardWidth;
+                    smoothScrollTo(targetPosition);
+                }
+            });
+        
+            next.addEventListener('click', () => {
+                if (currentIndex < maxIndex) {
+                    currentIndex += 1;
+                    const targetPosition = currentIndex * cardWidth;
+                    smoothScrollTo(targetPosition);
+                } else {
+                    // Scroll to the last card when at the end
+                    const targetPosition = (totalCards - 1) * cardWidth;
+                    smoothScrollTo(targetPosition);
+                }
+            });
+        
+            // Drag functionality
+            let isDragging = false;
+            let startX, scrollLeft;
+        
+            slider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                slider.classList.add('dragging');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+        
+            slider.addEventListener('mouseleave', () => {
+                isDragging = false;
+                slider.classList.remove('dragging');
+            });
+        
+            slider.addEventListener('mouseup', () => {
+                isDragging = false;
+                slider.classList.remove('dragging');
+            });
+        
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // Adjust scroll speed
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        });
+        
+        
+        
+        
+</script>
+</body>
+</html>
